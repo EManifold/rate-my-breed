@@ -5,6 +5,8 @@ export class Choices extends React.Component {
     super(props)
 
     this.state = {
+      likedBreeds: [],
+      dislikedBreeds: []
     }
   }
 
@@ -22,11 +24,29 @@ export class Choices extends React.Component {
   render() {
     return (
       <div className="choices-container">
-        <h4>You like:</h4>
-        <p>{this.state.likedBreeds}</p>
+        <h2>You like:</h2>
+        <div className="liked-breeds">
+          {
+            this.state.likedBreeds.map(breed => (
+              <div className="liked-breed">
+                <img width="300" src={breed.image}/>
+                <h3 id="breedName">{breed.data.name}</h3>
+              </div>
+            ))
+          }
+        </div>
 
-        <h4>You dislike:</h4>
-        <p>{this.state.dislikedBreeds}</p>
+        <h2>You dislike:</h2>
+        <div className="disliked-breeds">
+          {
+            this.state.dislikedBreeds.map(breed => (
+              <div className="disliked-breed">
+                <img width="300" src={breed.image}/>
+                <h3 id="breedName">{breed.data.name}</h3>
+              </div>
+            ))
+          }
+        </div>
       </div>
     )
   }

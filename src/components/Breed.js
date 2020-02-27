@@ -5,24 +5,24 @@ export class Breed extends React.Component {
     super(props)
 
     this.state = {
-      generatedBreedId: 0,
-      generatedBreed: [],
-      breedImage: '',
-      likes: 0,
-      dislikes: 0,
+      currentBreed: {},
       likedBreeds: [],
-      dislikedBreeds: []
+      dislikedBreeds: [],
+      breeds: []
     }
   }
 
-  componentDidMount() {
-    this.setBreed()
-  }
+  async componentDidMount() {
+    const breeds = await this.getBreeds();
+    const randomisedBreeds = this.shuffleArray(breeds)
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.likes !== prevState.likes || this.state.dislikes !== prevState.dislikes) {
-      this.setBreed();
-    }
+    this.setState({breeds: randomisedBreeds}, () => {
+      const currentBreed = this.state.breeds[0]
+
+      if(currentBreed) {
+        this.setBreed(currentBreed)
+      }
+    })
   }
 
   shuffleArray(array) {
@@ -35,91 +35,56 @@ export class Breed extends React.Component {
     return array
   }
 
-  async breedApiCall() {
-
+  getBreeds() {
     //make api call for breed id
-    await fetch('https://api.thecatapi.com/v1/breeds', {
+    return fetch('https://api.thecatapi.com/v1/breeds', {
       method: 'GET',
       headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'},
       query: { "attach_breed": 60 },
     })
       .then(response => response.json())
-      .then(responseJson => {
-        this.setState({
-          generatedBreedId: this.shuffleArray(responseJson)[0]["id"]
-        });
-      })
-      .catch(err => {
-        console.log(err);
-    });
+      .catch(err => console.log(err))
+  }
 
-    this.setImage()
-
-    //make api call for individual breed
-    return fetch(`https://api.thecatapi.com/v1/breeds/search?q=${this.state.generatedBreedId}`, {
+  getImage(breedId) {
+    return fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`, {
       method: 'GET',
       headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'}
     })
       .then(response => response.json())
+      .then(imageData => imageData[0]["url"])
+      .catch(err => console.log(err))
   }
 
-  imageApiCall() {
-    return fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${this.state.generatedBreedId}`, {
-      method: 'GET',
-      headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'}
-    })
-      .then(response => response.json())
-  }
+  async setBreed(breed) {
+    const image = await this.getImage(breed.id)
 
-  async setImage() {
-    this.imageApiCall()
-      .then((imageData) => {
-        this.setState({
-          breedImage: imageData[0]["url"]
-        });
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  async setBreed() {
-    this.breedApiCall()
-      .then((breedData) => {
-        this.setState({
-          generatedBreed: breedData[0],
-          breedName: breedData[0]["name"],
-          breedDescription: breedData[0]["description"]
-        });
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  giveLike() {
-    const joinedLikes = this.state.likedBreeds.concat(this.state.breedName)
-    this.setState(prevState => {
-      return {
-        likedBreeds: joinedLikes,
-        likes: prevState.likes + 1
+    this.setState({
+      currentBreed: {
+        data: breed,
+        image: image
       }
     })
   }
 
-  giveDislike() {
-    var joinedDislikes = this.state.dislikedBreeds.concat(this.state.breedName)
+  async onLikeChange(type) {
+    const joinedLikes = this.state[type].concat(this.state.currentBreed)
     this.setState(prevState => {
       return {
-        dislikedBreeds: joinedDislikes,
-        dislikes: prevState.dislikes + 1
+        [type]: joinedLikes,
+        breeds: prevState.breeds.slice(1)
+      }
+    }, () => {
+      const currentBreed = this.state.breeds[0]
+      if(currentBreed) {
+        this.setBreed(currentBreed)
       }
     })
   }
 
-  passThrough() {
-    this.props.likedBreeds(this.state.likedBreeds)
-    this.props.dislikedBreeds(this.state.dislikedBreeds)
+  viewChoices() {
+    this.props.setLikedBreeds(this.state.likedBreeds)
+    this.props.setDislikedBreeds(this.state.dislikedBreeds)
     this.props.goToPage('choices')
   }
 
@@ -127,17 +92,18 @@ export class Breed extends React.Component {
     return (
       <div className="breed-container">
       <button
-      onClick={() => this.passThrough()}
+      id="view-choices"
+      onClick={() => this.viewChoices()}
       >My choices</button>
       <h1>Rate My Breed</h1>
-        <img height="270" width="300" src={this.state.breedImage}/>
-        <h3 id="breedName">{this.state.breedName}</h3>
-        <p id="breedDescription">{this.state.breedDescription}</p>
+        <img width="300" src={this.state.currentBreed?.image}/>
+        <h3 id="breedName">{this.state.currentBreed?.data?.name}</h3>
+        <p id="breedDescription">{this.state.currentBreed?.data?.description}</p>
 
-        <button className="control-buttons" id="like" onClick={() => this.giveLike()}>
+        <button className="control-buttons" id="like" onClick={() => this.onLikeChange("likedBreeds")}>
           Like
         </button>
-        <button className="control-buttons" id="dislike" onClick={() => this.giveDislike()}>
+        <button className="control-buttons" id="dislike" onClick={() => this.onLikeChange("dislikedBreeds")}>
           Dislike
         </button>
 
