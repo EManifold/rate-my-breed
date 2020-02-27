@@ -18,9 +18,19 @@ export class Breed extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.likes !== prevState.likes) {
+    if (this.state.likes !== prevState.likes || this.state.dislikes !== prevState.dislikes) {
       this.setBreed();
     }
+  }
+
+  shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array
   }
 
   async breedApiCall() {
@@ -29,12 +39,13 @@ export class Breed extends React.Component {
     await fetch('https://api.thecatapi.com/v1/breeds', {
       method: 'GET',
       headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'},
-      query: { "attach_breed": 5},
+      query: { "attach_breed": 60 },
     })
       .then(response => response.json())
       .then(responseJson => {
+        console.log(responseJson)
         this.setState({
-          generatedBreedId: responseJson[0]["id"]
+          generatedBreedId: this.shuffleArray(responseJson)[0]["id"]
         });
       })
       .catch(err => {
@@ -105,8 +116,9 @@ export class Breed extends React.Component {
   render() {
     return (
       <div className="breed-container">
+      <h1>Rate My Breed</h1>
         <img height="270" width="300" src={this.state.breedImage}/>
-        <p id="breedName">{this.state.breedName}</p>
+        <h3 id="breedName">{this.state.breedName}</h3>
         <p id="breedDescription">{this.state.breedDescription}</p>
 
         <button className="control-buttons" id="like" onClick={() => this.giveLike()}>

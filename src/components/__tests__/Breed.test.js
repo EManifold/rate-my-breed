@@ -83,4 +83,17 @@ hypoallergenic: 0}]));
     expect(spy).toHaveBeenCalled();
   })
 
+  test("pressing dislike should render a new breed", async () => {
+    // expect(component.state.breedImage).toEqual("https://cdn2.thecatapi.com/images/9x1zk_Qdr.jpg")
+    const spy = jest
+    .spyOn(component, 'setBreed')
+    .mockImplementation(() => Promise.resolve());
+
+    component.forceUpdate();
+    wrapper.find("#dislike").simulate("click")
+
+    expect(spy).toHaveBeenCalled();
+  })
+
+
 })
