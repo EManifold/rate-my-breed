@@ -95,5 +95,11 @@ hypoallergenic: 0}]));
     expect(spy).toHaveBeenCalled();
   })
 
+  test("liking should add to liked breeds", () => {
+    component.setState({breedName: 'Ragamuffin'})
+    wrapper.find("#like").simulate("click")
+    expect(component.state.likedBreeds).toEqual(['Ragamuffin'])
+  })
+
 
 })

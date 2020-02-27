@@ -9,7 +9,8 @@ export class Breed extends React.Component {
       generatedBreed: [],
       breedImage: '',
       likes: 0,
-      dislikes: 0
+      dislikes: 0,
+      likedBreeds: []
     }
   }
 
@@ -43,7 +44,6 @@ export class Breed extends React.Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         this.setState({
           generatedBreedId: this.shuffleArray(responseJson)[0]["id"]
         });
@@ -73,7 +73,6 @@ export class Breed extends React.Component {
   async setImage() {
     this.imageApiCall()
       .then((imageData) => {
-      console.log(imageData)
         this.setState({
           breedImage: imageData[0]["url"]
         });
@@ -98,8 +97,10 @@ export class Breed extends React.Component {
   }
 
   giveLike() {
+    var joined = this.state.likedBreeds.concat(this.state.breedName)
     this.setState(prevState => {
       return {
+        likedBreeds: joined,
         likes: prevState.likes + 1
       }
     })
@@ -114,6 +115,7 @@ export class Breed extends React.Component {
   }
 
   render() {
+    console.log(this.state.likedBreeds)
     return (
       <div className="breed-container">
       <h1>Rate My Breed</h1>
