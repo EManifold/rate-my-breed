@@ -10,7 +10,8 @@ export class Breed extends React.Component {
       breedImage: '',
       likes: 0,
       dislikes: 0,
-      likedBreeds: []
+      likedBreeds: [],
+      dislikedBreeds: []
     }
   }
 
@@ -97,27 +98,38 @@ export class Breed extends React.Component {
   }
 
   giveLike() {
-    var joined = this.state.likedBreeds.concat(this.state.breedName)
+    const joinedLikes = this.state.likedBreeds.concat(this.state.breedName)
     this.setState(prevState => {
       return {
-        likedBreeds: joined,
+        likedBreeds: joinedLikes,
         likes: prevState.likes + 1
       }
     })
   }
 
   giveDislike() {
+    var joinedDislikes = this.state.dislikedBreeds.concat(this.state.breedName)
     this.setState(prevState => {
       return {
+        dislikedBreeds: joinedDislikes,
         dislikes: prevState.dislikes + 1
       }
     })
   }
 
+  passThrough() {
+    this.props.likedBreeds(this.state.likedBreeds)
+    this.props.dislikedBreeds(this.state.dislikedBreeds)
+    this.props.goToPage('choices')
+  }
+
   render() {
-    console.log(this.state.likedBreeds)
+    console.log(this.state)
     return (
       <div className="breed-container">
+      <button
+      onClick={() => this.passThrough()}
+      >My choices</button>
       <h1>Rate My Breed</h1>
         <img height="270" width="300" src={this.state.breedImage}/>
         <h3 id="breedName">{this.state.breedName}</h3>
