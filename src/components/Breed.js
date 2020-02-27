@@ -13,7 +13,6 @@ export class Breed extends React.Component {
 
   componentDidMount() {
     this.setBreed()
-    this.setImage()
   }
 
   async breedApiCall() {
@@ -34,6 +33,8 @@ export class Breed extends React.Component {
         console.log(err);
     });
 
+    this.setImage()
+
     //make api call for individual breed
     return fetch(`https://api.thecatapi.com/v1/breeds/search?q=${this.state.generatedBreedId}`, {
       method: 'GET',
@@ -43,7 +44,7 @@ export class Breed extends React.Component {
   }
 
   imageApiCall() {
-    return fetch(`https://api.thecatapi.com/v1/images/search?q=${this.state.generatedBreedId}`, {
+    return fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${this.state.generatedBreedId}`, {
       method: 'GET',
       headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'}
     })
@@ -79,7 +80,7 @@ export class Breed extends React.Component {
   render() {
     return (
       <div className="breed-container">
-      <img src={this.state.breedImage}/>
+      <img height="100" width="100" src={this.state.breedImage}/>
         <p id="breedName">{this.state.breedName}</p>
         <p id="breedDescription">{this.state.breedDescription}</p>
       </div>
