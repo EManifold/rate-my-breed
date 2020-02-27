@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Breed from './components/Breed'
 
 export default class RateMyBreed extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class RateMyBreed extends Component {
     switch (this.state.view) {
       case 'home':
         return (
-          'New app'
+          <Breed />
         );
       default:
         return (
