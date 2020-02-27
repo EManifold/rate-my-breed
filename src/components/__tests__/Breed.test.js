@@ -59,4 +59,10 @@ hypoallergenic: 0}]));
     expect(wrapper.find("#breedDescription").text()).toEqual("The Abyssinian is easy to care for, and a joy to have in your home. They’re affectionate cats and love both people and other animals.")
   });
 
+  test("should increase likes by 1", () => {
+    expect(component.state.likes).toEqual(0)
+    wrapper.find("#like").simulate("click")
+    expect(component.state.likes).toEqual(1)
+  })
+
 })

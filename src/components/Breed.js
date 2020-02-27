@@ -7,7 +7,8 @@ export class Breed extends React.Component {
     this.state = {
       generatedBreedId: 0,
       generatedBreed: [],
-      breedImage: ''
+      breedImage: '',
+      likes: 0
     }
   }
 
@@ -77,12 +78,24 @@ export class Breed extends React.Component {
       })
   }
 
+  giveLike() {
+    this.setState(prevState => {
+      return {
+        likes: prevState.likes + 1
+      }
+    })
+  }
+
   render() {
     return (
       <div className="breed-container">
-      <img height="100" width="100" src={this.state.breedImage}/>
+        <img height="270" width="300" src={this.state.breedImage}/>
         <p id="breedName">{this.state.breedName}</p>
         <p id="breedDescription">{this.state.breedDescription}</p>
+
+        <button className="control-buttons" id="like" onClick={() => this.giveLike()}>
+          Like
+        </button>
       </div>
     )
   }
