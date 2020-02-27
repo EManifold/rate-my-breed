@@ -8,12 +8,19 @@ export class Breed extends React.Component {
       generatedBreedId: 0,
       generatedBreed: [],
       breedImage: '',
-      likes: 0
+      likes: 0,
+      dislikes: 0
     }
   }
 
   componentDidMount() {
     this.setBreed()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.likes !== prevState.likes) {
+      this.setBreed();
+    }
   }
 
   async breedApiCall() {
@@ -55,6 +62,7 @@ export class Breed extends React.Component {
   async setImage() {
     this.imageApiCall()
       .then((imageData) => {
+      console.log(imageData)
         this.setState({
           breedImage: imageData[0]["url"]
         });
@@ -86,6 +94,14 @@ export class Breed extends React.Component {
     })
   }
 
+  giveDislike() {
+    this.setState(prevState => {
+      return {
+        dislikes: prevState.dislikes + 1
+      }
+    })
+  }
+
   render() {
     return (
       <div className="breed-container">
@@ -96,6 +112,10 @@ export class Breed extends React.Component {
         <button className="control-buttons" id="like" onClick={() => this.giveLike()}>
           Like
         </button>
+        <button className="control-buttons" id="dislike" onClick={() => this.giveDislike()}>
+          Dislike
+        </button>
+
       </div>
     )
   }

@@ -65,4 +65,22 @@ hypoallergenic: 0}]));
     expect(component.state.likes).toEqual(1)
   })
 
+  test("should increase dislikes by 1", () => {
+    expect(component.state.dislikes).toEqual(0)
+    wrapper.find("#dislike").simulate("click")
+    expect(component.state.dislikes).toEqual(1)
+  })
+
+  test("pressing like should render a new breed", async () => {
+    // expect(component.state.breedImage).toEqual("https://cdn2.thecatapi.com/images/9x1zk_Qdr.jpg")
+    const spy = jest
+    .spyOn(component, 'setBreed')
+    .mockImplementation(() => Promise.resolve());
+
+    component.forceUpdate();
+    wrapper.find("#like").simulate("click")
+
+    expect(spy).toHaveBeenCalled();
+  })
+
 })
