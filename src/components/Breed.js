@@ -124,7 +124,6 @@ export class Breed extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="breed-container">
       <button

@@ -3,7 +3,7 @@ import RateMyBreed from '../../RateMyBreed'
 import { configure, shallow } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
 
-describe("Make sure methods in Breed work as expected", () => {
+describe("Make sure methods in RateMyBreed work as expected", () => {
   let wrapper
   let component
 
@@ -21,6 +21,4 @@ describe("Make sure methods in Breed work as expected", () => {
     component.setState({view: 'choices'});
     expect(wrapper.find('Choices')).toHaveLength(1);
   });
-
-
 })
