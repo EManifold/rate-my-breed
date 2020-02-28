@@ -10,6 +10,8 @@ describe("Make sure methods in Choices work as expected", () => {
 
   beforeEach(() => {
     props = {
+      setLikedBreeds: jest.fn(),
+      setDislikedBreeds: jest.fn(),
       likedBreeds: [{data: {name: 'cat1'}, image: 'image1'}, {data: {name: 'cat2'}, image: 'image2'}, {data: {name: 'cat3'}, image: 'image3'}],
       dislikedBreeds: [{data: {name: 'cat4'}, image: 'image4'}, {data: {name: 'cat5'}, image: 'image5'}],
       goToPage: jest.fn()
