@@ -1,5 +1,4 @@
 import React from 'react';
-const API_KEY = process.env.apiKey
 
 export class Breed extends React.Component {
   constructor(props) {
@@ -38,9 +37,10 @@ export class Breed extends React.Component {
 
   getBreeds() {
     //make api call for breed id
+    const API_KEY = process.env.REACT_APP_API_KEY
     return fetch('https://api.thecatapi.com/v1/breeds', {
       method: 'GET',
-      // headers: { 'x-api-key':API_KEY},
+      headers: { 'x-api-key': API_KEY},
       query: { "attach_breed": 60 },
     })
       .then(response => response.json())
@@ -48,9 +48,10 @@ export class Breed extends React.Component {
   }
 
   getImage(breedId) {
+    const API_KEY = process.env.REACT_APP_API_KEY
     return fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`, {
-      method: 'GET'
-      // headers: { 'x-api-key':API_KEY}
+      method: 'GET',
+      headers: { 'x-api-key': API_KEY}
     })
       .then(response => response.json())
       .then(imageData => imageData[0]["url"])
@@ -91,7 +92,9 @@ export class Breed extends React.Component {
 
   render() {
     return (
-      <div className="breed-container">
+      <div className="breed-container" style={{
+                width: 700
+              }}>
       <button
       id="view-choices"
       onClick={() => this.viewChoices()}

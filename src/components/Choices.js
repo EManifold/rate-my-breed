@@ -29,7 +29,9 @@ export class Choices extends React.Component {
 
   render() {
     return (
-      <div className="choices-container">
+      <div className="choices-container" style={{
+                width: 700
+              }}>
       <button
       id="back"
       onClick={() => this.returnToRater()}
