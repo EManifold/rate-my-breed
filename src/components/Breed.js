@@ -92,8 +92,11 @@ export class Breed extends React.Component {
 
   render() {
     return (
-      <div className="breed-container" style={{
-                width: 700
+      <div
+      className="breed-container"
+      style={{
+        width: '40%',
+        margin: "0 auto"
               }}>
       <button
       id="view-choices"
