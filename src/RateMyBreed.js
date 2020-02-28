@@ -18,6 +18,8 @@ export default class RateMyBreed extends Component {
         return (
           <Breed
           goToPage={page => this.setState({view: page})}
+          likedBreeds={this.state.likedBreeds}
+          dislikedBreeds={this.state.dislikedBreeds}
           setLikedBreeds={results => this.setState({likedBreeds: results})}
           setDislikedBreeds={results => this.setState({dislikedBreeds: results})}
           />
@@ -25,8 +27,11 @@ export default class RateMyBreed extends Component {
         case 'choices':
           return (
             <Choices
+            goToPage={page => this.setState({view: page})}
             likedBreeds={this.state.likedBreeds}
             dislikedBreeds={this.state.dislikedBreeds}
+            setLikedBreeds={results => this.setState({likedBreeds: results})}
+            setDislikedBreeds={results => this.setState({dislikedBreeds: results})}
             />
           );
       default:

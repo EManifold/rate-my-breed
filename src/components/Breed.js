@@ -1,4 +1,5 @@
 import React from 'react';
+const API_KEY = process.env.apiKey
 
 export class Breed extends React.Component {
   constructor(props) {
@@ -6,8 +7,8 @@ export class Breed extends React.Component {
 
     this.state = {
       currentBreed: {},
-      likedBreeds: [],
-      dislikedBreeds: [],
+      likedBreeds: this.props.likedBreeds,
+      dislikedBreeds: this.props.dislikedBreeds,
       breeds: []
     }
   }
@@ -39,7 +40,7 @@ export class Breed extends React.Component {
     //make api call for breed id
     return fetch('https://api.thecatapi.com/v1/breeds', {
       method: 'GET',
-      headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'},
+      // headers: { 'x-api-key':API_KEY},
       query: { "attach_breed": 60 },
     })
       .then(response => response.json())
@@ -48,8 +49,8 @@ export class Breed extends React.Component {
 
   getImage(breedId) {
     return fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`, {
-      method: 'GET',
-      headers: { 'x-api-key':'68b2ccd7-9af6-4b9b-9a56-e0786a49e8f0'}
+      method: 'GET'
+      // headers: { 'x-api-key':API_KEY}
     })
       .then(response => response.json())
       .then(imageData => imageData[0]["url"])

@@ -21,9 +21,19 @@ export class Choices extends React.Component {
     return breeds.filter((a, b) => breeds.indexOf(a) === b);
   }
 
+  returnToRater() {
+    this.props.setLikedBreeds(this.state.likedBreeds)
+    this.props.setDislikedBreeds(this.state.dislikedBreeds)
+    this.props.goToPage('home')
+  }
+
   render() {
     return (
       <div className="choices-container">
+      <button
+      id="back"
+      onClick={() => this.returnToRater()}
+      >Back to Rater</button>
         <h2>You like:</h2>
         <div className="liked-breeds">
           {
