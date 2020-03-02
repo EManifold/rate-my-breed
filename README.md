@@ -2,7 +2,7 @@
 # Rate My Breed
 
 ## Description
-The project allows the user to rate each breed individually, then view their 'choices' page to see which breeds they've liked and disliked.   
+The project generates random breeds of cat and allows the user to rate each breed individually, then view their 'choices' page to see which breeds they've liked and disliked.   
 
 Each breed of cat is generated using [CatAPI](https://docs.thecatapi.com/).  
 
