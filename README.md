@@ -37,7 +37,7 @@ The user can then return to the rating page by click on the button 'Back to Rate
 - Enzyme
 
 ## Project Status
-The project is currently complete, howevever developments could be made. These include attaching a back-end and database to store the likes for each breed, and shows the number of likes per breed on a profile page for each breed with more information about that breed (e.g. affection level, country of origin - all provided in the API call). Also, could expand with authentication, each user signs into their own account with their breed likes and dislikes stored within that.
+The project is currently complete, however developments could be made. These include attaching a back-end and database to store the likes for each breed, and shows the number of likes per breed on a profile page for each breed with more information about that breed (e.g. affection level, country of origin - all provided in the API call). Also, could expand with authentication, each user signs into their own account with their breed likes and dislikes stored within that.
 
 ## Learn More
 
