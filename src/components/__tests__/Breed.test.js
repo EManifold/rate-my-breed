@@ -99,7 +99,7 @@ describe("Make sure methods in Breed work as expected", () => {
   test("liking should add to liked breeds", () => {
     component.setState({currentBreed: {data: {name: 'Ragamuffin'}, image: 'image'}})
     wrapper.find("#like").simulate("click")
-    expect(component.state.likedBreeds).toEqual([{data: {name: 'Ragamuffin'}, image: 'image'}])
+    expect(component.state.likedBreeds).toEqual([{data: {name: 'cat1'}, image: 'image1'}, {data: {name: 'cat2'}, image: 'image2'}, {data: {name: 'cat3'}, image: 'image3'}, {data: {name: 'Ragamuffin'}, image: 'image'}])
   })
 
   test('View choices button takes you to choices component', () => {
