@@ -95,22 +95,54 @@ export class Breed extends React.Component {
       <div
       className="breed-container"
       style={{
-        width: '40%',
-        margin: "0 auto"
-              }}>
+        width: '60%',
+        margin: '2em auto',
+        borderRadius: '1em',
+        boxShadow: '1px 0 2px rgba(0,0,0,.1)'
+      }}>
       <button
       id="view-choices"
       onClick={() => this.viewChoices()}
+      style={{
+        background: "#0062ff",
+        borderColour: "#64DD17",
+        color: "#fff",
+        fontWeight: "bold",
+        padding: "1em .5em",
+        borderRadius: ".5em"
+      }}
       >My choices</button>
       <h1>Rate My Breed</h1>
         <img width="300" src={this.state.currentBreed?.image}/>
         <h3 id="breedName">{this.state.currentBreed?.data?.name}</h3>
         <p id="breedDescription">{this.state.currentBreed?.data?.description}</p>
 
-        <button className="control-buttons" id="like" onClick={() => this.onLikeChange("likedBreeds")}>
+        <button
+        className="control-buttons"
+        id="like"
+        onClick={() => this.onLikeChange("likedBreeds")}
+        style={{
+          background: "#64DD17",
+          borderColour: "#64DD17",
+          color: "#fff",
+          fontWeight: "bold",
+          padding: "1em .5em",
+          borderRadius: ".5em",
+        }}>
           Like
         </button>
-        <button className="control-buttons" id="dislike" onClick={() => this.onLikeChange("dislikedBreeds")}>
+        <button
+        className="control-buttons"
+        id="dislike"
+        onClick={() => this.onLikeChange("dislikedBreeds")}
+        style={{
+          background: "#d50000",
+          borderColour: "#64DD17",
+          color: "#fff",
+          fontWeight: "bold",
+          padding: "1em .5em",
+          borderRadius: ".5em"
+        }}>
           Dislike
         </button>
 

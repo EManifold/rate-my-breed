@@ -36,12 +36,27 @@ export class Choices extends React.Component {
       <button
       id="back"
       onClick={() => this.returnToRater()}
+      style={{
+        background: "#0062ff",
+        borderColour: "#64DD17",
+        color: "#fff",
+        fontWeight: "bold",
+        padding: "1em .5em",
+        borderRadius: ".5em"
+      }}
       >Back to Rater</button>
         <h2>You like:</h2>
         <div className="liked-breeds">
           {
             this.state.likedBreeds.map(breed => (
-              <div className="liked-breed">
+              <div
+              className="liked-breed"
+              style={{
+                width: '60%',
+                margin: '2em auto',
+                borderRadius: '1em',
+                boxShadow: '1px 0 2px rgba(0,0,0,.1)'
+              }}>
                 <img width="300" src={breed.image}/>
                 <h3 id="breedName">{breed.data.name}</h3>
               </div>
@@ -53,7 +68,14 @@ export class Choices extends React.Component {
         <div className="disliked-breeds">
           {
             this.state.dislikedBreeds.map(breed => (
-              <div className="disliked-breed">
+              <div
+              className="disliked-breed"
+              style={{
+                width: '60%',
+                margin: '2em auto',
+                borderRadius: '1em',
+                boxShadow: '1px 0 2px rgba(0,0,0,.1)'
+              }}>
                 <img width="300" src={breed.image}/>
                 <h3 id="breedName">{breed.data.name}</h3>
               </div>
