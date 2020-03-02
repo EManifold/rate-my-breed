@@ -1,69 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Rate My Breed
 
-In the project directory, you can run:
+## Description
+The project allows the user to rate each breed individually, then view their 'choices' page to see which breeds they've liked and disliked.   
 
-### `yarn start`
+Each breed of cat is generated using [CatAPI](https://docs.thecatapi.com/).  
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installation
+- Clone this repository
+- Run ```$ yarn start```
+- Open [http://localhost:3000](http://localhost:3000) to view in the browser
+- Run ```$ yarn test``` to see the tests being run
 
-### `yarn test`
+## Usage
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Opening the app will take you to the homepage, where you have your first breed to rate. Once you have clicked 'Like' or 'Dislike', a new breed will be automatically generated.
+<img width="1112" alt="Screenshot 2020-03-02 at 09 18 06" src="https://user-images.githubusercontent.com/53044792/75663143-427c0680-5c68-11ea-9dca-37b087153265.png">
+  
+The user can go through rating each breed, and when they've had enough click on 'My Choices' to view your likes and dislikes.  
 
-### `yarn build`
+<img width="1022" alt="Screenshot 2020-03-02 at 09 20 02" src="https://user-images.githubusercontent.com/53044792/75663329-85d67500-5c68-11ea-9031-cee91b142b7f.png">
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img width="1009" alt="Screenshot 2020-03-02 at 09 20 15" src="https://user-images.githubusercontent.com/53044792/75663355-8d961980-5c68-11ea-846d-70725870cec3.png">
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The user can then return to the rating page by click on the button 'Back to Rater'.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies used
+- ReactJS
+- JavaScript
+- CatAPI
+- HTML
+- CSS
+- Jest
+- Enzyme
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Project Status
+The project is currently complete, howevever developments could be made. These include attaching a back-end and database to store the likes for each breed, and shows the number of likes per breed on a profile page for each breed with more information about that breed (e.g. affection level, country of origin - all provided in the API call). Also, could expand with authentication, each user signs into their own account with their breed likes and dislikes stored within that.
 
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# rate-my-breed
