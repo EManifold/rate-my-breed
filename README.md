@@ -18,10 +18,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Opening the app will take you to the homepage, where you have your first breed to rate. Once you have clicked 'Like' or 'Dislike', a new breed will be automatically generated.
 <img width="1112" alt="Screenshot 2020-03-02 at 09 18 06" src="https://user-images.githubusercontent.com/53044792/75663143-427c0680-5c68-11ea-9dca-37b087153265.png">
-  
+
 The user can go through rating each breed, and when they've had enough click on 'My Choices' to view your likes and dislikes.  
 
-<img width="1022" alt="Screenshot 2020-03-02 at 09 20 02" src="https://user-images.githubusercontent.com/53044792/75663329-85d67500-5c68-11ea-9031-cee91b142b7f.png">
+<img width="804" alt="Screenshot 2020-03-02 at 09 20 02" src="https://user-images.githubusercontent.com/53044792/75664102-d69a9d80-5c69-11ea-92a7-a933d34fa3dc.png">
 
 <img width="1009" alt="Screenshot 2020-03-02 at 09 20 15" src="https://user-images.githubusercontent.com/53044792/75663355-8d961980-5c68-11ea-846d-70725870cec3.png">
 
